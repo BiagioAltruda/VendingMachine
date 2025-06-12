@@ -3,8 +3,8 @@ public class Beverages {
 	private String productName;
 	private int productCode;
 	private double productPrice;
-	private int quantity;
-	public Beverages(String productName, int productCode, double productPrice, int quantity) {
+    private int quantity;
+    public Beverages(String productName, int productCode, double productPrice, int quantity) {
 		super();
 		this.productName = productName;
 		this.productCode = productCode;
@@ -35,6 +35,6 @@ public class Beverages {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
-	
-	
+    
+    
 }

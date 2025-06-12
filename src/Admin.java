@@ -23,6 +23,7 @@ public class Admin extends User{
 				
 		
 	}
+	
 	public static Beverages adjustPrice(Beverages b, double modifier) throws ArithmeticException { //Method to change the price of a beverage
 		if (modifier < 0)	//basically same logic as before
 			if((b.getProductPrice() + modifier)< 0)
