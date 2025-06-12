@@ -34,6 +34,11 @@ public class Beverages {
 	public void setQuantity(int quantity) {
 		this.quantity = quantity;
 	}
+	@Override
+	public String toString() {
+		return productName + ", Code=" + productCode + ", Price="
+				+ productPrice + ", Quantity=" + quantity;
+	}
     
     
 }

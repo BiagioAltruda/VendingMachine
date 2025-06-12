@@ -18,18 +18,15 @@ public class Distributore {
 	
     private Distributore() {
     	
-    	// initial credit to 0? 
-    	// initial change set to let`s say 100?
-    	
     	this.credit = 0;
     	
     	catalogue = new TreeMap<>();
     	
-//    	catalogue.put(null, null);
-//    	catalogue.put(null, null);
-//    	catalogue.put(null, null);
-//    	catalogue.put(null, null);
-//    	catalogue.put(null, null);
+    	catalogue.put(1, new Beverages ("Caffè", 1, 1, 5));
+    	catalogue.put(2, new Beverages ("Acqua", 2, 0.5, 2));
+    	catalogue.put(3, new Beverages ("Cioccolata Calda", 3, 2, 1));
+    	catalogue.put(4, new Beverages ("Decaffeinato", 4, 0.7, 0));
+    	catalogue.put(5, new Beverages ("Cappuccino", 5, 1.5, 4));
     	
     	
     }
