@@ -22,7 +22,7 @@ public class Main {
 			}
 			else {
 				for(Entry<Integer, Beverages> item: Distributore.getInstance().getCatalogue().entrySet()) {
-					if (item)
+					//if (item)
 				}
 			}
 		} while(true);
