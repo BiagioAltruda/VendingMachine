@@ -17,11 +17,11 @@ public class Main {
 
 		do { // main loop
 			System.out.println("Insert product code: ");
-			String code = scan.next();
+			int code = scan.nextInt();
 			if (code == Admin.getInstance().getAccessCode()) {
 				PageSelector.adminProcess();
 			} else
-				PageSelector.regularUserProcess(Integer.parseInt(code));
+				PageSelector.regularUserProcess(code);
 		} while (true);
 	}
 }

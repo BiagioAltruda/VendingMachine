@@ -31,6 +31,12 @@ public class Distributore {
     	
     }
     
+    public static Distributore getInstance() {
+    	if( instance == null)
+    		instance = new Distributore();
+    	return instance;
+    }
+    
     public TreeMap<Integer, Beverages> getCatalogue() {
     	return catalogue;
     }
@@ -42,11 +48,6 @@ public class Distributore {
     }
     
 
-    public static Distributore getInstance() {
-    	if( instance == null)
-    		instance = new Distributore();
-        return instance;
-    }
 
 
 	public double getChange() {

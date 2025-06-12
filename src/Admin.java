@@ -3,7 +3,7 @@ import java.util.Scanner;
 
 public class Admin extends User{
 
-	private final String accessCode = "accessCode"; //Admin access code
+	private final int accessCode = 123; //Admin access code
 	private static Admin instance; //I'll make sure that there will only be 1 admin instance for all operations
 	private static Distributore vendingMachine = Distributore.getInstance();
 	private Admin() {
@@ -18,7 +18,7 @@ public class Admin extends User{
 	
 	
 	
-	public String getAccessCode() {
+	public int getAccessCode() {
 		return accessCode;
 	}
 
