@@ -16,24 +16,22 @@ public class Admin extends User{
 		return instance;
 	}
 	
-	public static Beverages restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
+	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
 		for (Map.Entry<Integer, Beverages> entries: Distributore.getInstance().getCatalogue().entrySet())
-			if(entries.getValue().getProductName() == b.getProductName()) {
+			if(entries.getValue().getProductName() == b.getProductName()) { //if the product already exists, modify it
 		
 		if(modifier < 0) // if i'm removing items
 			if((b.getQuantity()+modifier) < 0) //if i would go below 0
 				throw new ArithmeticException ("Cannot set quantity lower than 0"); //throw exeption
 		b.setQuantity(b.getQuantity()+modifier); //otherwise just do the operation
 			
-		break;
+		return;
 				
 			}
-			else {
-				Integer max = Distributore.getInstance().getCatalogue().lastKey();
-				Distributore.getInstance().getCatalogue().put(max, b);
-				
-			}
-		return b;
+		 // if i get here it means that there are no products with matching names
+		Integer max = Distributore.getInstance().getCatalogue().lastKey(); //i get the last key in the map
+		Distributore.getInstance().getCatalogue().put(max+1, b); // and i put at the next spot the new item
+		
 	}
 	
 	public static Beverages adjustPrice(Beverages b, double modifier) throws ArithmeticException { //Method to change the price of a beverage
