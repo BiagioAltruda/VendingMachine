@@ -19,6 +19,7 @@ public class Main {
 		do { // main loop
 			System.out.println("Insert product code: ");
 			String code = scan.next();
+			int h = Integer.parseInt(code);
 			if (code == Admin.getInstance().getAccessCode()) {
 				//ADMIN PAGE
 			} else {
