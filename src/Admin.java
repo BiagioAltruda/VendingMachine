@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public class Admin extends User{
@@ -33,6 +34,15 @@ public class Admin extends User{
 		return b; //giving back the beverage
 		
 	}
+	
+	public static void productsData() {
+		for (Map.Entry<Integer, Beverages> entry: Distributore.getInstance().getCatalogue().entrySet()) {
+			System.out.println(entry.getKey() + " = " + entry.getValue().toString());
+		}
+		
+		
+	}
+	
 	public static void emptyRegister() { //method used to empty the cash register
 		if (Distributore.getInstance().getChange()==0) { //checks if the balance is 0
 			System.out.println("No credit to retrive"); 

@@ -3,7 +3,7 @@ import java.util.TreeMap;
 public class Distributore {
     
 	
-	TreeMap<Integer, Beverages> catalogue; 
+	public TreeMap<Integer, Beverages> catalogue; 
 	private double change;
 	private double credit; 
 	
@@ -35,6 +35,14 @@ public class Distributore {
     
     
 
+
+	public TreeMap<Integer, Beverages> getCatalogue() {
+		return catalogue;
+	}
+
+	public void setCatalogue(TreeMap<Integer, Beverages> catalogue) {
+		this.catalogue = catalogue;
+	}
 
 	public double getChange() {
 		return change;
