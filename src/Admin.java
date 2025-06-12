@@ -15,6 +15,12 @@ public class Admin extends User{
 		return instance;
 	}
 	
+	
+	
+	public String getAccessCode() {
+		return accessCode;
+	}
+
 	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
 		for (Map.Entry<Integer, Beverages> entries: Distributore.getInstance().getCatalogue().entrySet())
 			if(entries.getValue().getProductName() == b.getProductName()) { //if the product already exists, modify it
