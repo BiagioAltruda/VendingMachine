@@ -22,9 +22,15 @@ public class Admin extends User{
 		return accessCode;
 	}
 
-	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
+	public static boolean inStock(Beverages b) {
 		for (Map.Entry<Integer, Beverages> entries: vendingMachine.getCatalogue().entrySet())
-			if(entries.getValue().getProductName() == b.getProductName()) { //if the product already exists, modify it
+			if(entries.getValue().getProductName() == b.getProductName()) //if the product already exists, return true
+				return true;
+		return false;
+	}
+	
+	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
+		if(inStock(b)) { //if the product already exists, modify it
 		
 		if(modifier < 0) // if i'm removing items
 			if((b.getQuantity()+modifier) < 0) //if i would go below 0
@@ -41,6 +47,9 @@ public class Admin extends User{
 	}
 	
 	public static Beverages adjustPrice(Beverages b, double modifier) throws ArithmeticException { //Method to change the price of a beverage
+		if(!inStock(b)) {
+			System.out.println("product not found");
+		}
 		if (modifier < 0)	//basically same logic as before
 			if((b.getProductPrice() + modifier)< 0)
 				throw new ArithmeticException ("Cannot reduce price below 0");
