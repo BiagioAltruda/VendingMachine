@@ -4,6 +4,7 @@ public class RegularUser extends User {
 
 	private double credit;
 
+	private static Distributore vendingMachine = Distributore.getInstance();
 	public RegularUser(String code, double credit) { // Constructor
 		// super(code);
 		this.credit = credit;
@@ -70,7 +71,7 @@ public class RegularUser extends User {
 	public void transaction(Beverages b) { // this method does all the house keeping
 		if (quantityHelper(b)) { //check product is in stock
 			setCredit(getCredit() - b.getProductPrice()); //if yes, proced to update the balance, vending machine change and product quantity
-			Distributore.getInstance().setChange(Distributore.getInstance().getChange() + b.getProductPrice());
+			vendingMachine.setChange(vendingMachine.getChange() + b.getProductPrice());
 			b.setQuantity(b.getQuantity() - 1);
 			System.out.println("Operation Successfull. new balance: " + getCredit());
 		} else {
@@ -82,14 +83,14 @@ public class RegularUser extends User {
 	public void transazione(double creditoInserito) {
 		setCredit(getCredit() - creditoInserito); // setto a 0 il credito, in teoria dovrebbe mandarlo al resto di
 													// Distributore e poi perdere TempChange
-		Distributore.getInstance().setCredit(Distributore.getInstance().getCredit() + creditoInserito); // il
+		vendingMachine.setCredit(vendingMachine.getCredit() + creditoInserito); // il
 																										// distributore
 																										// sputa fuori
 																										// il resto
 	}
 
 	void resto(double tempChange) {
-		Distributore.getInstance().setCredit(0); // setto a 0 il credito, in teoria dovrebbe mandarlo al resto di
+		vendingMachine.setCredit(0); // setto a 0 il credito, in teoria dovrebbe mandarlo al resto di
 													// Distributore e poi perdere TempChange
 		setCredit(getCredit() + tempChange); // il distributore sputa fuori il resto
 	}

@@ -5,6 +5,7 @@ public class Admin extends User{
 
 	private final String accessCode = "accessCode"; //Admin access code
 	private static Admin instance; //I'll make sure that there will only be 1 admin instance for all operations
+	private static Distributore vendingMachine = Distributore.getInstance();
 	private Admin() {
 	}
 	
@@ -22,7 +23,7 @@ public class Admin extends User{
 	}
 
 	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
-		for (Map.Entry<Integer, Beverages> entries: Distributore.getInstance().getCatalogue().entrySet())
+		for (Map.Entry<Integer, Beverages> entries: vendingMachine.getCatalogue().entrySet())
 			if(entries.getValue().getProductName() == b.getProductName()) { //if the product already exists, modify it
 		
 		if(modifier < 0) // if i'm removing items
@@ -34,8 +35,8 @@ public class Admin extends User{
 				
 			}
 		 // if i get here it means that there are no products with matching names
-		Integer max = Distributore.getInstance().getCatalogue().lastKey(); //i get the last key in the map
-		Distributore.getInstance().getCatalogue().put(max+1, b); // and i put at the next spot the new item
+		Integer max = vendingMachine.getCatalogue().lastKey(); //i get the last key in the map
+		vendingMachine.getCatalogue().put(max+1, b); // and i put at the next spot the new item
 		
 	}
 	
@@ -50,15 +51,15 @@ public class Admin extends User{
 	}
 	
 	public static void productsData() {
-		Distributore.getInstance().showProducts();
+		vendingMachine.showProducts();
 		}
 	
 	public static void emptyRegister() { //method used to empty the cash register
-		if (Distributore.getInstance().getChange()==0) { //checks if the balance is 0
+		if (vendingMachine.getChange()==0) { //checks if the balance is 0
 			System.out.println("No credit to retrive"); 
 			return; //returns in that case
 		}
-		System.out.println("There are: " + Distributore.getInstance().getChange() + "U+20ACs "); //shows current balance
+		System.out.println("There are: " + vendingMachine.getChange() + "U+20ACs "); //shows current balance
 		System.out.println("Do you want to retrive it? \n Press 1 for yes, or 2 for no"); //ask for confirmation
 		
 		Scanner scan = new Scanner(System.in); //creating scanner
@@ -68,7 +69,7 @@ public class Admin extends User{
 		switch(selector) { //deciding what action to take
 		case 1:
 			System.out.println("retrieving....");
-			Distributore.getInstance().setChange(0); // sets the balance to 0, imitating getting the change out of the machine
+			vendingMachine.setChange(0); // sets the balance to 0, imitating getting the change out of the machine
 			System.out.println("Done!");
 			break;
 		case 2:
@@ -79,8 +80,13 @@ public class Admin extends User{
 		}
 	}
 	
-	public static void addMachineCredit(double modifier) {
-		Distributore.getInstance().setChange(Distributore.getInstance().getChange()+modifier);
+	public static void addMachineCredit(double modifier) { //Adds credit to the vending machine
+		vendingMachine.setChange(vendingMachine.getChange()+modifier);
+	}
+	
+	public static void quitProgram() {
+		System.out.println("Thanks for having us!");
+		System.exit(0);
 	}
 
 }
