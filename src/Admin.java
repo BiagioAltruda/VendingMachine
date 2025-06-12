@@ -1,6 +1,5 @@
 import java.util.Map;
 import java.util.Scanner;
-import java.lang.reflect.*;
 
 public class Admin extends User{
 
@@ -77,5 +76,4 @@ public class Admin extends User{
 	public static void addMachineCredit(double modifier) {
 		Distributore.getInstance().setChange(Distributore.getInstance().getChange()+modifier);
 	}
-	
 }

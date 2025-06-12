@@ -11,18 +11,17 @@ public class Distributore {
 	}
 
 
-	private double change = 0;
+	private double change = 100;
 	private double credit; 
 	
 	public static Distributore instance;
 	
-    private Distributore(double change) {
+    private Distributore() {
     	
     	// initial credit to 0? 
     	// initial change set to let`s say 100?
     	
     	this.credit = 0;
-    	this.change = change;
     	
     	catalogue = new TreeMap<>();
     	
@@ -48,7 +47,7 @@ public class Distributore {
 
     public static Distributore getInstance() {
     	if( instance == null)
-    		instance = new Distributore(100);
+    		instance = new Distributore();
         return instance;
     }
 
