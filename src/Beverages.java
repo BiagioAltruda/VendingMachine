@@ -1,4 +1,3 @@
-
 public class Beverages {
 	private String productName;
 	private int productCode;
