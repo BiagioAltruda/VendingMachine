@@ -17,13 +17,19 @@ public class Admin extends User{
 		if(modifier < 0) // if i'm removing items
 			if((b.getQuantity()+modifier) < 0) //if i would go below 0
 				throw new ArithmeticException ("Cannot set quantity lower than 0"); //throw exeption
-			b.setQuantity(b.getQuantity()+modifier); //otherwise just do the operation
+		b.setQuantity(b.getQuantity()+modifier); //otherwise just do the operation
 			
 		return b; //giving back the beverage
 				
 		
 	}
-	public static void adjustPrice() {
+	public static Beverages adjustPrice(Beverages b, double modifier) throws ArithmeticException { //Method to change the price of a beverage
+		if (modifier < 0)	//basically same logic as before
+			if((b.getProductPrice() + modifier)< 0)
+				throw new ArithmeticException ("Cannot reduce price below 0");
+		b.setProductPrice(b.getProductPrice()+modifier); //changing the price
+		
+		return b; //giving back the beverage
 		
 	}
 	public static void emptyRegister() {
