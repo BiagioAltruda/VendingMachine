@@ -1,3 +1,4 @@
+import java.util.Scanner;
 
 public class Admin extends User{
 
@@ -32,7 +33,31 @@ public class Admin extends User{
 		return b; //giving back the beverage
 		
 	}
-	public static void emptyRegister() {
+	public static void emptyRegister() { //method used to empty the cash register
+		if (Distributore.getInstance().getChange()==0) { //checks if the balance is 0
+			System.out.println("No credit to retrive"); 
+			return; //returns in that case
+		}
+		System.out.println("There are: " + Distributore.getInstance().getChange() + "U+20ACs "); //shows current balance
+		System.out.println("Do you want to retrive it? \n Press 1 for yes, or 2 for no"); //ask for confirmation
+		
+		Scanner scan = new Scanner(System.in); //creating scanner
+		
+		int selector = scan.nextInt(); //and getting the selection 
+		
+		switch(selector) { //deciding what action to take
+		case 1:
+			System.out.println("retrieving....");
+			Distributore.getInstance().setChange(0); // sets the balance to 0, imitating getting the change out of the machine
+			System.out.println("Done!");
+			break;
+		case 2:
+			System.out.println("Goodbye!"); //returns
+			break;
+			default:
+				System.out.println("Invalid selection"); //standard invalid selection message
+		}
+		
 		
 	}
 	

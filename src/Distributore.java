@@ -7,6 +7,13 @@ public class Distributore {
 	private double change;
 	private double credit; 
 	
+	private static Distributore instance;
+	
+	public static Distributore getInstance () {
+		if (instance == null)
+			instance = new Distributore();
+		return instance;
+	}
 	
     private Distributore() {
     	catalogue = new TreeMap<>();
@@ -16,7 +23,6 @@ public class Distributore {
 //    	catalogue.put(null, null);
 //    	catalogue.put(null, null);
 //    	catalogue.put(null, null);
-    	
     	
     }
     
@@ -28,14 +34,6 @@ public class Distributore {
     }
     
     
-    
-    private static class DistributoreA {
-        private static final Distributore INSTANCE = new Distributore();
-    }
-
-    public static Distributore getInstance() {
-        return DistributoreA.INSTANCE;
-    }
 
 
 	public double getChange() {
