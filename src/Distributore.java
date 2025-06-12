@@ -3,12 +3,20 @@ import java.util.TreeMap;
 public class Distributore {
     
 	
-	TreeMap<Integer, Beverages> catalogue; 
-	private double change;
+	public TreeMap<Integer, Beverages> catalogue; 
+
+
+	public void setCatalogue(TreeMap<Integer, Beverages> catalogue) {
+		this.catalogue = catalogue;
+	}
+
+
+	private double change = 0;
 	private double credit; 
 	
+	public static Distributore instance;
 	
-    private Distributore(double credit, double change) {
+    private Distributore(double change) {
     	
     	// initial credit to 0? 
     	// initial change set to let`s say 100?
@@ -27,6 +35,9 @@ public class Distributore {
     	
     }
     
+    public TreeMap<Integer, Beverages> getCatalogue() {
+    	return catalogue;
+    }
     
     public void showProducts() {
     	
@@ -34,14 +45,11 @@ public class Distributore {
     		System.out.println(catalogue.get(key));
     }
     
-    
-    
-    private static class DistributoreA {
-        private static final Distributore INSTANCE = new Distributore(100.0, 0.0);
-    }
 
     public static Distributore getInstance() {
-        return DistributoreA.INSTANCE;
+    	if( instance == null)
+    		instance = new Distributore(100);
+        return instance;
     }
 
 
@@ -64,6 +72,4 @@ public class Distributore {
 		this.credit = credit;
 	}
 
-    
-    
 }
