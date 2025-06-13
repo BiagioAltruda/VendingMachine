@@ -1,3 +1,4 @@
+import java.util.Scanner;
 import java.util.TreeMap;
 
 public class Distributore {
@@ -62,6 +63,20 @@ public class Distributore {
 
 	public void setCredit(double credit) {
 		this.credit = credit;
+	}
+	
+	public void run() {
+		
+		Scanner scan = new Scanner(System.in);
+		do { // main loop
+			System.out.println("Insert product code: ");
+			int code = scan.nextInt();		//reading code
+			if (code == Admin.getInstance().getAccessCode()) { //accessing to the correct pages
+				PageSelector.adminProcess();
+			} else
+				PageSelector.regularUserProcess(code);
+		} while (true);
+		
 	}
 
 }

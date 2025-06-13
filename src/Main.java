@@ -13,15 +13,7 @@ public class Main {
 		
 		RegularUser user = new RegularUser();
 		System.out.println("Vending Machine ready!"); // initialization done
-		Scanner scan = new Scanner(System.in);
 
-		do { // main loop
-			System.out.println("Insert product code: ");
-			int code = scan.nextInt();		//reading code
-			if (code == Admin.getInstance().getAccessCode()) { //accessing to the correct pages
-				PageSelector.adminProcess();
-			} else
-				PageSelector.regularUserProcess(code);
-		} while (true);
+		Distributore.getInstance().run();
 	}
 }

@@ -33,7 +33,7 @@ public abstract class PageSelector {
 		do {
 		System.out.println("Choose any of the following:"
 				+ "\n 1. Restock machine\n 2. Adjust price of a product\n 3. show all products"
-				+ "\n 4. empty register \n 5. Add credit \n 6. turn off vending machine");
+				+ "\n 4. empty register \n 5. Add credit \n 6. Return to initial menu \n 7. Exit program");
 		choice = scan.nextInt();
 		
 		switch (choice) {
@@ -74,12 +74,21 @@ public abstract class PageSelector {
 			System.out.println();
 			break;
 		case 6:
+			System.out.println("Ritorno al menu iniziale...");
+			do { 
+				System.out.println("Insert product code: ");
+				int code = scan.nextInt();		
+				if (code == Admin.getInstance().getAccessCode()) { 
+				} else
+					PageSelector.regularUserProcess(code);
+			} while (true);
+		case 7:
 			admin.quitProgram();
 			break;
 		default:
 			
 		}
-	}while(choice != 6);
+	}while(choice != 7);
 		
 	}
 
