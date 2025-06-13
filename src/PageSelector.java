@@ -87,6 +87,7 @@ public abstract class PageSelector {
 			admin.quitProgram();
 			break;
 		default:
+			System.out.println("Insert a valid option ");
 			
 		}
 	}while(choice != 8);
