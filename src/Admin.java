@@ -68,7 +68,7 @@ public class Admin extends User{
 			System.out.println("No credit to retrive"); 
 			return; //returns in that case
 		}
-		System.out.println("There are: " + vendingMachine.getChange() + "U+20ACs "); //shows current balance
+		System.out.println("There are: " + vendingMachine.getChange() + "\u20AC"); //shows current balance
 		System.out.println("Do you want to retrive it? \n Press 1 for yes, or 2 for no"); //ask for confirmation
 		
 		Scanner scan = new Scanner(System.in); //creating scanner
