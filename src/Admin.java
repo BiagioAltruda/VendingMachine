@@ -22,7 +22,7 @@ public class Admin {
 		return accessCode;
 	}
 
-	public static boolean inStock(Beverages b) {
+	public static boolean inStock(Beverages b) { //checks if product is present
 		for (Map.Entry<Integer, Beverages> entries : vendingMachine.getCatalogue().entrySet())
 			if (entries.getValue().getProductName() == b.getProductName()) // if the product already exists, return true
 				return true;
@@ -39,7 +39,6 @@ public class Admin {
 			b.setQuantity(b.getQuantity() + modifier); // otherwise just do the operation
 
 			return;
-
 		}
 
 	}

@@ -67,7 +67,7 @@ public class RegularUser{
 
 	public void transaction(Beverages b) { // this method does all the house keeping
 		if (quantityHelper(b)) { //check product is in stock
-			setCredit(getCredit() - b.getProductPrice()); //if yes, proced to update the balance, vending machine change and product quantity
+			setCredit(getCredit() - b.getProductPrice()); //if yes, proceed to update the balance, vending machine change and product quantity
 			vendingMachine.setChange(vendingMachine.getChange() + b.getProductPrice());
 			b.setQuantity(b.getQuantity() - 1);
 			System.out.println("Operation Successfull. new balance: " + getCredit());

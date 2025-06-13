@@ -1,12 +1,13 @@
+import java.util.HashMap;
 import java.util.TreeMap;
 
 public class Distributore {
     
 	
-	public TreeMap<Integer, Beverages> catalogue; 
+	public HashMap<Integer, Beverages> catalogue; 
 
 
-	public void setCatalogue(TreeMap<Integer, Beverages> catalogue) {
+	public void setCatalogue(HashMap<Integer, Beverages> catalogue) {
 		this.catalogue = catalogue;
 	}
 
@@ -19,7 +20,7 @@ public class Distributore {
     	
     	this.credit = 0;
     	
-    	catalogue = new TreeMap<>();
+    	catalogue = new HashMap<>();
     	
     	catalogue.put(1, new Beverages ("Caffè", 1, 1, 5));
     	catalogue.put(2, new Beverages ("Acqua", 2, 0.5, 2));
@@ -43,7 +44,7 @@ public class Distributore {
     }
     
     // Getters and Setters
-    public TreeMap<Integer, Beverages> getCatalogue() {
+    public HashMap<Integer, Beverages> getCatalogue() {
     	return catalogue;
     }
     
