@@ -1,18 +1,18 @@
 import java.util.Scanner;
 
 public abstract class PageSelector {
-	private static Distributore vendingMachine = Distributore.getInstance();
+	private static Distributore vendingMachine = Distributore.getInstance(); //getting all the needed entities
 	private static RegularUser user = new RegularUser();
 	private static Scanner scan = new Scanner(System.in);
 	private static Admin admin = Admin.getInstance();
 
-	public static void regularUserProcess(int code) {
-		Beverages b = vendingMachine.getCatalogue().get(code);
-		if (b != null) {
+	public static void regularUserProcess(int code) { //if the user put a valid product code we execute this
+		Beverages b = vendingMachine.getCatalogue().get(code);	//reads the code
+		if (b!= null) {	// checks if product exists
 			System.out.println("Do you want to pay with credit or cash? \n select 1 for credit or 2 for cash");
-			int method = scan.nextInt();
+			int method = scan.nextInt(); //taking input
 			if (method == 1)
-				user.payCredit(b);
+				user.payCredit(b); //choosing the correct payment option
 			else if (method == 2)
 				user.payCash(b);
 			else {
