@@ -10,14 +10,14 @@ public class Main {
 			System.out.println("Could not initialize necessary classes");
 			e.getMessage();
 		}
-		Distributore vendingMachine = Distributore.getInstance(); // working name variable for the instance
-		RegularUser user = new RegularUser(null, 0);
+		
+		RegularUser user = new RegularUser();
 		System.out.println("Vending Machine ready!"); // initialization done
 		Scanner scan = new Scanner(System.in);
 
 		do { // main loop
 			System.out.println("Insert product code: ");
-			int code = scan.nextInt();
+			int code = scan.nextInt();		//reading code
 			if (code == Admin.getInstance().getAccessCode()) {
 				PageSelector.adminProcess();
 			} else

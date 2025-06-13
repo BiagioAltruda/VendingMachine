@@ -1,7 +1,7 @@
 import java.util.Map;
 import java.util.Scanner;
 
-public class Admin extends User{
+public class Admin{
 
 	private final int accessCode = 123; //Admin access code
 	private static Admin instance; //I'll make sure that there will only be 1 admin instance for all operations
@@ -29,7 +29,7 @@ public class Admin extends User{
 		return false;
 	}
 	
-	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
+	public void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
 		if(inStock(b)) { //if the product already exists, modify it
 		
 		if(modifier < 0) // if i'm removing items
@@ -46,29 +46,30 @@ public class Admin extends User{
 		
 	}
 	
-	public static Beverages adjustPrice(Beverages b, double modifier) throws ArithmeticException { //Method to change the price of a beverage
-		if(!inStock(b)) {
+	public void adjustPrice(Beverages b, double newPrice) throws ArithmeticException { //Method to change the price of a beverage
+		if(!inStock(b)) {		//if product is not present
 			System.out.println("product not found");
+			return;
 		}
-		if (modifier < 0)	//basically same logic as before
-			if((b.getProductPrice() + modifier)< 0)
-				throw new ArithmeticException ("Cannot reduce price below 0");
-		b.setProductPrice(b.getProductPrice()+modifier); //changing the price
+		if (newPrice < 0)		//if the price is negative
+			throw new ArithmeticException ("New price must be positive"); //throw forces early return
 		
-		return b; //giving back the beverage
+		b.setProductPrice(newPrice); //setting product price
+		
+		return;
 		
 	}
 	
-	public static void productsData() {
+	public void productsData() {
 		vendingMachine.showProducts();
 		}
 	
-	public static void emptyRegister() { //method used to empty the cash register
+	public void emptyRegister() { //method used to empty the cash register
 		if (vendingMachine.getChange()==0) { //checks if the balance is 0
 			System.out.println("No credit to retrive"); 
 			return; //returns in that case
 		}
-		System.out.println("There are: " + vendingMachine.getChange() + "\u20AC"); //shows current balance
+		System.out.println("There are: " + vendingMachine.getChange() + "U+20AC"); //shows current balance
 		System.out.println("Do you want to retrive it? \n Press 1 for yes, or 2 for no"); //ask for confirmation
 		
 		Scanner scan = new Scanner(System.in); //creating scanner
@@ -89,11 +90,11 @@ public class Admin extends User{
 		}
 	}
 	
-	public static void addMachineCredit(double modifier) { //Adds credit to the vending machine
+	public void addMachineCredit(double modifier) { //Adds credit to the vending machine
 		vendingMachine.setChange(vendingMachine.getChange()+modifier);
 	}
 	
-	public static void quitProgram() {
+	public void quitProgram() {
 		System.out.println("Thanks for having us!");
 		System.exit(0);
 	}
