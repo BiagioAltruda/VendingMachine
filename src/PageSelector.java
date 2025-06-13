@@ -32,17 +32,22 @@ public abstract class PageSelector {
 		
 		do {
 		System.out.println("Choose any of the following:"
-				+ "\n 1. Restock machine\n 2. Adjust price or a product\n 3. show all products"
+				+ "\n 1. Restock machine\n 2. Adjust price of a product\n 3. show all products"
 				+ "\n 4. empty register \n 5. Add credit \n 6. turn off vending machine");
 		choice = scan.nextInt();
 		
 		switch (choice) {
 		case 1:
+			try {
 			System.out.println("Insert beverage code: ");
 			Beverages b = vendingMachine.getCatalogue().get(scan.nextInt());
 			System.out.println("amount to add or remove");
 			admin.restock(b, scan.nextInt());
 			System.out.println();
+			} catch(NullPointerException e) {
+				System.out.println("No product exists with inserted code.");
+				continue;
+			}
 			break;
 		case 2:
 			System.out.println("Insert beverage code: ");

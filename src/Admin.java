@@ -29,7 +29,7 @@ public class Admin{
 		return false;
 	}
 	
-	public static void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
+	public void restock (Beverages b, int modifier) throws ArithmeticException { //Restock method for adding/removing beverages
 		if(inStock(b)) { //if the product already exists, modify it
 		
 		if(modifier < 0) // if i'm removing items
@@ -46,7 +46,7 @@ public class Admin{
 		
 	}
 	
-	public static void adjustPrice(Beverages b, double newPrice) throws ArithmeticException { //Method to change the price of a beverage
+	public void adjustPrice(Beverages b, double newPrice) throws ArithmeticException { //Method to change the price of a beverage
 		if(!inStock(b)) {		//if product is not present
 			System.out.println("product not found");
 			return;
@@ -60,11 +60,11 @@ public class Admin{
 		
 	}
 	
-	public static void productsData() {
+	public void productsData() {
 		vendingMachine.showProducts();
 		}
 	
-	public static void emptyRegister() { //method used to empty the cash register
+	public void emptyRegister() { //method used to empty the cash register
 		if (vendingMachine.getChange()==0) { //checks if the balance is 0
 			System.out.println("No credit to retrive"); 
 			return; //returns in that case
@@ -90,11 +90,11 @@ public class Admin{
 		}
 	}
 	
-	public static void addMachineCredit(double modifier) { //Adds credit to the vending machine
+	public void addMachineCredit(double modifier) { //Adds credit to the vending machine
 		vendingMachine.setChange(vendingMachine.getChange()+modifier);
 	}
 	
-	public static void quitProgram() {
+	public void quitProgram() {
 		System.out.println("Thanks for having us!");
 		System.exit(0);
 	}
