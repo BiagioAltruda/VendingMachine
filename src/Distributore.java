@@ -15,7 +15,7 @@ public class Distributore {
 	
 	public static Distributore instance;
 	
-    private Distributore() {
+    private Distributore() { //private constructor for safety reasons
     	
     	this.credit = 0;
     	
@@ -29,20 +29,22 @@ public class Distributore {
     	
     }
     
-    public static Distributore getInstance() {
+    public static Distributore getInstance() { // gets instance when it exists, or creates one if not
     	if( instance == null)
     		instance = new Distributore();
     	return instance;
     }
     
-    public TreeMap<Integer, Beverages> getCatalogue() {
-    	return catalogue;
-    }
     
     public void showProducts() {
     	
     	for(Integer key : catalogue.keySet())
     		System.out.println(catalogue.get(key));
+    }
+    
+    // Getters and Setters
+    public TreeMap<Integer, Beverages> getCatalogue() {
+    	return catalogue;
     }
     
 	public double getChange() {
