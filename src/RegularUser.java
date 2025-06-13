@@ -62,7 +62,7 @@ public class RegularUser {
 
 	public void payCredit(Beverages b) throws RejectedCreditCardException, ProductUnavailableException { // Imagining user can pay with credit card
 		credit = 20; // Hypotetical balance on credit card
-
+		try {
 		if (credit > b.getProductPrice()) // if credit card has enough money
 			transaction(b); // delegate the transaction
 		else {
@@ -71,6 +71,9 @@ public class RegularUser {
 																										// the card does
 																										// not have
 																										// enough money
+		}} catch(RejectedCreditCardException e) {
+			System.out.println(e.getMessage());
+			return;
 		}
 	}
 
