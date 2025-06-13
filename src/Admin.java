@@ -41,27 +41,24 @@ public class Admin {
 			return;
 
 		}
-		// if i get here it means that there are no products with matching names
-		System.out.println("Product with name: " + b.getProductName() + " does not exist. Add new?");
-		restockAddHelper();
 
 	}
 
-	public void restockAddHelper() {
+	public void restockAddHelper() { //method used to add new items
 		System.out.println("Insert beverage data: name, code, price and quantity");
 		try {
-			Scanner scan = new Scanner(System.in);
+			Scanner scan = new Scanner(System.in); //trying to get product info
 			String name = scan.next();
 			int code = scan.nextInt();
 			double price = scan.nextDouble();
 			int quantity = scan.nextInt();
 			Beverages b = new Beverages(name, code, price, quantity);
 			try {
-				vendingMachine.getCatalogue().put(code, b);
-			} catch (Exception e) {
+				vendingMachine.getCatalogue().put(code, b); //and storing it
+			} catch (Exception e) { // catching case where code already exists
 				System.out.println("a product with code:" + code + " already exists. Maybe modify it, or remove it.");
 			}
-		} catch (InputMismatchException e) {
+		} catch (InputMismatchException e) { //catching typo/ordering mistakes
 			System.out.println("Make sure to insert the product data in order.");
 		}
 	}
