@@ -16,7 +16,7 @@ public abstract class PageSelector {
 			else if (method == 2)
 				user.payCash(b);
 			else {
-				System.out.println("Insert valid option. Retry");
+				System.out.println("Insert valid option. Retry"); 
 				return;
 			}
 		} else {
@@ -46,6 +46,8 @@ public abstract class PageSelector {
 			System.out.println();
 			} catch(NullPointerException e) {
 				System.out.println("No product exists with inserted code.");
+				System.out.println("Adding new product....");
+				admin.restockAddHelper();
 				continue;
 			}
 			break;
