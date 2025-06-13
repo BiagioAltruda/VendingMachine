@@ -10,7 +10,6 @@ public class Distributore {
 		this.catalogue = catalogue;
 	}
 
-
 	private double change = 100;
 	private double credit; 
 	
@@ -27,7 +26,6 @@ public class Distributore {
     	catalogue.put(3, new Beverages ("Cioccolata Calda", 3, 2, 1));
     	catalogue.put(4, new Beverages ("Decaffeinato", 4, 0.7, 0));
     	catalogue.put(5, new Beverages ("Cappuccino", 5, 1.5, 4));
-    	
     	
     }
     
@@ -47,9 +45,6 @@ public class Distributore {
     		System.out.println(catalogue.get(key));
     }
     
-
-
-
 	public double getChange() {
 		return change;
 	}
