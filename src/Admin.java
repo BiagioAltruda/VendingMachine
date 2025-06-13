@@ -1,6 +1,7 @@
 import java.util.InputMismatchException;
 import java.util.Map;
 import java.util.Scanner;
+import java.util.TreeMap;
 
 public class Admin {
 
@@ -110,6 +111,27 @@ public class Admin {
 	public void addMachineCredit(double modifier) { // Adds credit to the vending machine
 		vendingMachine.setChange(vendingMachine.getChange() + modifier);
 	}
+	
+	public void removeDrink() {
+		
+		Scanner s = new Scanner(System.in);
+		System.out.println("Choose code( Removing a drink): ");
+		int codeToRemove = s.nextInt();
+
+		for (Map.Entry<Integer, Beverages> entry : vendingMachine.catalogue.entrySet()) {
+
+			if (entry.getKey() == codeToRemove) {
+				System.out.println("Code found! Removing item...");
+				vendingMachine.catalogue.remove(entry.getKey());
+				break;
+			} else {
+				System.out.println("Code not found!");
+			}
+
+		}
+
+	}
+		
 
 	public void quitProgram() {
 		System.out.println("Thanks for having us!");

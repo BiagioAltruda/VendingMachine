@@ -6,10 +6,12 @@ public class Distributore {
 	
 	public TreeMap<Integer, Beverages> catalogue; 
 
-
+	
+	
 	public void setCatalogue(TreeMap<Integer, Beverages> catalogue) {
 		this.catalogue = catalogue;
 	}
+	
 
 	private double change = 100;
 	private double credit; 

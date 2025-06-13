@@ -15,5 +15,6 @@ public class Main {
 		System.out.println("Vending Machine ready!"); // initialization done
 
 		Distributore.getInstance().run();
+		
 	}
 }

@@ -1,3 +1,4 @@
+import java.util.Map;
 import java.util.Scanner;
 
 public abstract class PageSelector {
@@ -32,8 +33,8 @@ public abstract class PageSelector {
 		
 		do {
 		System.out.println("Choose any of the following:"
-				+ "\n 1. Restock machine\n 2. Adjust price of a product\n 3. show all products"
-				+ "\n 4. empty register \n 5. Add credit \n 6. Return to initial menu \n 7. Exit program");
+				+ " \n 1. Restock machine \n 2. Remove an item \n 3. Adjust price of a product \n 4. show all products"
+				+ " \n 5. empty register \n 6. Add credit \n 7. Return to initial menu \n 8. Exit program");
 		choice = scan.nextInt();
 		
 		switch (choice) {
@@ -52,43 +53,43 @@ public abstract class PageSelector {
 			}
 			break;
 		case 2:
+			admin.removeDrink();
+			System.out.println("Updated list:");
+			admin.productsData();
+			System.out.println();
+			break;
+		case 3:
 			System.out.println("Insert beverage code: ");
 			Beverages b1 = vendingMachine.getCatalogue().get(scan.nextInt());
 			System.out.println("Insert new price: ");
 			admin.adjustPrice(b1, scan.nextDouble());
 			System.out.println();
 			break;
-		case 3:
+		case 4:
 			admin.productsData();
 			System.out.println();
 			break;
-		case 4:
+		case 5:
 			admin.emptyRegister();
 			System.out.println();
 			break;
-		case 5:
+		case 6:
 			System.out.println("Insert how much credit to load: ");
 			admin.addMachineCredit(scan.nextDouble());
 			double temp = Distributore.getInstance().getChange();
 			System.out.println("Adesso nel distributore ci sono: " + temp + "\u20AC");
 			System.out.println();
 			break;
-		case 6:
-			System.out.println("Ritorno al menu iniziale...");
-			do { 
-				System.out.println("Insert product code: ");
-				int code = scan.nextInt();		
-				if (code == Admin.getInstance().getAccessCode()) { 
-				} else
-					PageSelector.regularUserProcess(code);
-			} while (true);
 		case 7:
+			System.out.println("Ritorno al menu iniziale...");
+			Distributore.getInstance().run();
+		case 8:
 			admin.quitProgram();
 			break;
 		default:
 			
 		}
-	}while(choice != 7);
+	}while(choice != 8);
 		
 	}
 
