@@ -1,3 +1,4 @@
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.util.TreeMap;
 
@@ -67,10 +68,11 @@ public class Distributore {
 		this.credit = credit;
 	}
 	
-	public void run() {
+	public void run() throws InputMismatchException, ProductUnavailableException {
 		
 		Scanner scan = new Scanner(System.in);
 		do { // main loop
+			Admin.getInstance().productsData();
 			System.out.println("Insert product code: ");
 			int code = scan.nextInt();		//reading code
 			if (code == Admin.getInstance().getAccessCode()) { //accessing to the correct pages
@@ -80,5 +82,4 @@ public class Distributore {
 		} while (true);
 		
 	}
-
 }

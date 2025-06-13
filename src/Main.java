@@ -1,6 +1,8 @@
+import java.util.InputMismatchException;
+
 public class Main {
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws InputMismatchException, ProductUnavailableException {
 		try {
 			Distributore.getInstance(); // Initialize vending machine and admin user
 			Admin.getInstance();

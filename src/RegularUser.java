@@ -1,11 +1,13 @@
 import java.util.*;
 
-public class RegularUser{
+public class RegularUser {
 
 	private double credit;
 
 	private static Distributore vendingMachine = Distributore.getInstance();
-	public RegularUser() {}
+
+	public RegularUser() {
+	}
 
 	// Getters and Setters
 	public double getCredit() {
@@ -16,15 +18,19 @@ public class RegularUser{
 		this.credit = credit;
 	}
 
-	public boolean quantityHelper(Beverages b) {
+	public boolean quantityHelper(Beverages b) throws ProductUnavailableException {
+		try {
 		if (b.getQuantity() > 0)
 			return true;
 		else
+			throw new ProductUnavailableException ("Product is not available right now");
+		} catch(ProductUnavailableException e) {
 			return false;
+		}
 	}
 
 	// method called when paying with cash
-	public void payCash(Beverages b) throws InputMismatchException {
+	public void payCash(Beverages b) throws InputMismatchException, ProductUnavailableException {
 		Scanner scan = new Scanner(System.in);
 		double balance = 0; // initial balance
 		do {
@@ -43,7 +49,7 @@ public class RegularUser{
 						continue;
 					else {
 						System.out.println("Goodbye!"); // quit
-						balance = 0; //give back the change
+						balance = 0; // give back the change
 						break;
 					}
 				} catch (InputMismatchException e) { // handle exception and go to the next iteration
@@ -54,28 +60,31 @@ public class RegularUser{
 		} while (true); // don't need to update this, all cases are covered in the body
 	}
 
-	public void payCredit(Beverages b) throws ArithmeticException { // Imagining user can pay with credit card
+	public void payCredit(Beverages b) throws RejectedCreditCardException, ProductUnavailableException { // Imagining user can pay with credit card
 		credit = 20; // Hypotetical balance on credit card
 
-		try {
-			if (credit > b.getProductPrice()) // if credit card has enough money
-				transaction(b); // delegate the transaction
-		} catch (ArithmeticException e) { // handling the case in which the card does not have enough money
-			System.out.println("Transaction denied. Check card balance and retry.");
+		if (credit > b.getProductPrice()) // if credit card has enough money
+			transaction(b); // delegate the transaction
+		else {
+			throw new RejectedCreditCardException("Transaction denied. Check card balance and retry."); // handling the
+																										// case in which
+																										// the card does
+																										// not have
+																										// enough money
 		}
 	}
 
-	public void transaction(Beverages b) { // this method does all the house keeping
-		if (quantityHelper(b)) { //check product is in stock
-			setCredit(getCredit() - b.getProductPrice()); //if yes, proceed to update the balance, vending machine change and product quantity
+	public void transaction(Beverages b) throws ProductUnavailableException { // this method does all the house keeping
+		if (quantityHelper(b)) { // check product is in stock
+			setCredit(getCredit() - b.getProductPrice()); // if yes, proceed to update the balance, vending machine
+															// change and product quantity
 			vendingMachine.setChange(vendingMachine.getChange() + b.getProductPrice());
 			b.setQuantity(b.getQuantity() - 1);
 			System.out.println("Operation Successfull. new balance: " + getCredit());
 		} else {
-			System.out.println("Product is anavailable"); // case quantity lesser than or equal to 0
+			System.out.println("Product is unavailable"); // case quantity lesser than or equal to 0
 		}
 
 	}
 
 }
-
