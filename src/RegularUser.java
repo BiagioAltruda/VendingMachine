@@ -1,14 +1,11 @@
 import java.util.*;
 
-public class RegularUser extends User {
+public class RegularUser{
 
 	private double credit;
 
 	private static Distributore vendingMachine = Distributore.getInstance();
-	public RegularUser(String code, double credit) { // Constructor
-		// super(code);
-		this.credit = credit;
-	}
+	public RegularUser() {}
 
 	// Getters and Setters
 	public double getCredit() {
@@ -78,21 +75,6 @@ public class RegularUser extends User {
 			System.out.println("Product is anavailable"); // case quantity lesser than or equal to 0
 		}
 
-	}
-
-	public void transazione(double creditoInserito) {
-		setCredit(getCredit() - creditoInserito); // setto a 0 il credito, in teoria dovrebbe mandarlo al resto di
-													// Distributore e poi perdere TempChange
-		vendingMachine.setCredit(vendingMachine.getCredit() + creditoInserito); // il
-																										// distributore
-																										// sputa fuori
-																										// il resto
-	}
-
-	void resto(double tempChange) {
-		vendingMachine.setCredit(0); // setto a 0 il credito, in teoria dovrebbe mandarlo al resto di
-													// Distributore e poi perdere TempChange
-		setCredit(getCredit() + tempChange); // il distributore sputa fuori il resto
 	}
 
 }

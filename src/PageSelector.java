@@ -2,7 +2,7 @@ import java.util.Scanner;
 
 public abstract class PageSelector {
 	private static Distributore vendingMachine = Distributore.getInstance();
-	private static RegularUser user = new RegularUser(null, 0);
+	private static RegularUser user = new RegularUser();
 	private static Scanner scan = new Scanner(System.in);
 	private static Admin admin = Admin.getInstance();
 
