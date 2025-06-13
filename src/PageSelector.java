@@ -62,6 +62,8 @@ public abstract class PageSelector {
 		case 5:
 			System.out.println("Insert how much credit to load: ");
 			admin.addMachineCredit(scan.nextDouble());
+			double temp = Distributore.getInstance().getChange();
+			System.out.println("Adesso nel distributore ci sono: " + temp + "\u20AC");
 			System.out.println();
 			break;
 		case 6:
